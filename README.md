@@ -2,6 +2,9 @@
 
 MarketRadar is an autonomous agent specialized in Open Source Intelligence (OSINT) and market research. It navigates the web autonomously to fulfill specific objectives, overcoming UI obstacles, pop-ups, and pagination.
 
+<img width="1895" height="739" alt="market-radar" src="https://github.com/user-attachments/assets/ab8b01ec-3b53-457f-a36f-d8c3e22e2fe0" />
+
+
 ## Features
 
 - Autonomous web navigation using Playwright
