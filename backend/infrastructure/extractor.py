@@ -1,5 +1,6 @@
+"""Data extraction implementation."""
 from typing import Dict, Any, List
-from browser_engine import BrowserEngine
+from infrastructure.browser_engine import BrowserEngine
 import re
 
 
@@ -74,10 +75,51 @@ class DataExtractor:
                 extracted["url"] = page_state.get("url", "")
             elif point == "title":
                 extracted["title"] = page_state.get("title", "")
+            elif point == "description":
+                extracted["description"] = self.extract_description(page_state)
+            elif point == "specifications":
+                extracted["specifications"] = self.extract_specifications(page_state)
             else:
                 extracted[point] = self._extract_custom_point(point, page_state)
         
         return extracted
+    
+    def extract_description(self, page_state: Dict[str, Any]) -> str:
+        """Extract main description or summary from page"""
+        visible_text = page_state.get("visible_text", "")
+        
+        # Try to find meta description or first substantial paragraph
+        lines = visible_text.split("\n")
+        for line in lines:
+            line = line.strip()
+            if len(line) > 50 and len(line) < 500:
+                # Likely a description
+                return line
+        
+        # Return first 300 characters as fallback
+        return visible_text[:300] if visible_text else ""
+    
+    def extract_specifications(self, page_state: Dict[str, Any]) -> Dict[str, str]:
+        """Extract specifications in key-value format"""
+        visible_text = page_state.get("visible_text", "")
+        specs = {}
+        
+        # Look for common specification patterns
+        spec_patterns = [
+            r'([^:]+):\s*([^\n]+)',
+            r'([^=]+)=\s*([^\n]+)',
+            r'([A-Z][^:]+):\s*([^\n]+)'
+        ]
+        
+        for pattern in spec_patterns:
+            matches = re.finditer(pattern, visible_text)
+            for match in matches:
+                key = match.group(1).strip()
+                value = match.group(2).strip()
+                if len(key) < 50 and len(value) < 200:
+                    specs[key] = value
+        
+        return specs
     
     def _extract_custom_point(self, point: str, page_state: Dict[str, Any]) -> Any:
         visible_text = page_state.get("visible_text", "").lower()

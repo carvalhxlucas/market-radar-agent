@@ -1,8 +1,8 @@
 import sys
 import os
-from browser_engine import BrowserEngine
-from memory import Memory
-from agent import MarketRadarAgent
+from infrastructure.browser_engine import BrowserEngine
+from infrastructure.memory import Memory
+from services.agent import MarketRadarAgent
 
 
 def main():
