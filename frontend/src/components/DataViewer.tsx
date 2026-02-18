@@ -25,9 +25,9 @@ function DataViewer({ data }: DataViewerProps) {
   if (!data || data.length === 0) {
     return (
       <div className="card">
-        <h2>Dados Extraídos</h2>
+        <h2>Extracted Data</h2>
         <div style={{ color: '#999', textAlign: 'center', padding: '20px' }}>
-          Nenhum dado extraído ainda.
+          No data extracted yet.
         </div>
       </div>
     );
@@ -51,7 +51,7 @@ function DataViewer({ data }: DataViewerProps) {
 
   return (
     <div className="card">
-      <h2>Dados Extraídos ({data.length} registros)</h2>
+      <h2>Extracted Data ({data.length} records)</h2>
       
       <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
         {data.map((item, index) => {
@@ -64,25 +64,25 @@ function DataViewer({ data }: DataViewerProps) {
               style={{
                 marginBottom: '16px',
                 padding: '16px',
-                background: '#f9f9f9',
-                borderRadius: '8px',
-                border: '1px solid #e0e0e0',
+                background: '#2a2a2a',
+                borderRadius: '4px',
+                border: '1px solid #333',
               }}
             >
-              <h3 style={{ marginBottom: '12px', color: '#333' }}>
-                Registro #{index + 1}
+              <h3 style={{ marginBottom: '12px', color: '#e0e0e0' }}>
+                Record #{index + 1}
               </h3>
               
               {item.title && (
                 <div style={{ marginBottom: '8px' }}>
-                  <strong>Título:</strong> {item.title}
+                  <strong>Title:</strong> {item.title}
                 </div>
               )}
               
               {item.url && (
                 <div style={{ marginBottom: '8px' }}>
                   <strong>URL:</strong>{' '}
-                  <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: '#2196f3' }}>
+                  <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ color: '#b0b0b0' }}>
                     {item.url}
                   </a>
                 </div>
@@ -90,18 +90,19 @@ function DataViewer({ data }: DataViewerProps) {
               
               {prices.length > 0 && (
                 <div style={{ marginBottom: '12px' }}>
-                  <strong>Preços encontrados ({prices.length}):</strong>
+                  <strong>Prices found ({prices.length}):</strong>
                   <div style={{ marginTop: '8px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                     {prices.map((price, pIndex) => (
                       <span
                         key={pIndex}
                         style={{
                           padding: '6px 12px',
-                          background: '#4caf50',
-                          color: 'white',
-                          borderRadius: '20px',
+                          background: '#3a3a3a',
+                          color: '#e0e0e0',
+                          borderRadius: '4px',
                           fontSize: '0.9rem',
-                          fontWeight: '600',
+                          fontWeight: '500',
+                          border: '1px solid #444',
                         }}
                       >
                         {typeof price === 'object' 
@@ -111,9 +112,9 @@ function DataViewer({ data }: DataViewerProps) {
                     ))}
                   </div>
                   {avgPrice !== null && (
-                    <div style={{ marginTop: '12px', padding: '12px', background: '#e3f2fd', borderRadius: '6px' }}>
-                      <strong>Preço Médio:</strong>{' '}
-                      <span style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#1976d2' }}>
+                    <div style={{ marginTop: '12px', padding: '12px', background: '#2a2a2a', borderRadius: '4px', border: '1px solid #333' }}>
+                      <strong>Average Price:</strong>{' '}
+                      <span style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#e0e0e0' }}>
                         {formatPrice(avgPrice)}
                       </span>
                     </div>
@@ -122,9 +123,9 @@ function DataViewer({ data }: DataViewerProps) {
               )}
               
               {item.average_price && (
-                <div style={{ marginTop: '12px', padding: '12px', background: '#fff3e0', borderRadius: '6px' }}>
-                  <strong>Média Calculada:</strong>{' '}
-                  <span style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#f57c00' }}>
+                <div style={{ marginTop: '12px', padding: '12px', background: '#2a2a2a', borderRadius: '4px', border: '1px solid #333' }}>
+                  <strong>Calculated Average:</strong>{' '}
+                  <span style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#e0e0e0' }}>
                     {formatPrice(item.average_price, item.currency || 'BRL')}
                   </span>
                 </div>
@@ -132,7 +133,7 @@ function DataViewer({ data }: DataViewerProps) {
               
               {item.product_names && item.product_names.length > 0 && (
                 <div style={{ marginTop: '12px' }}>
-                  <strong>Produtos encontrados:</strong>
+                  <strong>Products found:</strong>
                   <ul style={{ marginTop: '8px', paddingLeft: '20px' }}>
                     {item.product_names.slice(0, 10).map((product, pIndex) => (
                       <li key={pIndex} style={{ marginBottom: '4px' }}>{product}</li>
@@ -143,7 +144,7 @@ function DataViewer({ data }: DataViewerProps) {
               
               {item.timestamp && (
                 <div style={{ marginTop: '8px', fontSize: '0.85rem', color: '#999' }}>
-                  Extraído em: {new Date(item.timestamp).toLocaleString()}
+                  Extracted at: {new Date(item.timestamp).toLocaleString()}
                 </div>
               )}
             </div>

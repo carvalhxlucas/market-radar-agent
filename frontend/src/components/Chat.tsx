@@ -71,17 +71,17 @@ function Chat({ onSendCommand, isRunning, logs }: ChatProps) {
       <div className="chat-messages">
         {messages.length === 0 ? (
           <div className="chat-welcome">
-            <p className="welcome-text">Olá! Sou o MarketRadar.</p>
-            <p className="welcome-subtext">Envie um comando para começar, por exemplo:</p>
+            <p className="welcome-text">Hello! I'm MarketRadar.</p>
+            <p className="welcome-subtext">Send a command to get started, for example:</p>
             <div className="suggested-actions">
-              <div className="action-button" onClick={() => setInput("Encontre o preço médio de Creatina no Brasil")}>
-                "Encontre o preço médio de Creatina no Brasil"
+              <div className="action-button" onClick={() => setInput("Find the average price of Creatine in Brazil")}>
+                "Find the average price of Creatine in Brazil"
               </div>
-              <div className="action-button" onClick={() => setInput("Pesquise o preço de Whey Protein no Brasil")}>
-                "Pesquise o preço de Whey Protein no Brasil"
+              <div className="action-button" onClick={() => setInput("Search for Whey Protein prices in Brazil")}>
+                "Search for Whey Protein prices in Brazil"
               </div>
-              <div className="action-button" onClick={() => setInput("Qual o preço médio de suplementos no Brasil?")}>
-                "Qual o preço médio de suplementos no Brasil?"
+              <div className="action-button" onClick={() => setInput("What is the average price of supplements in Brazil?")}>
+                "What is the average price of supplements in Brazil?"
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@ function Chat({ onSendCommand, isRunning, logs }: ChatProps) {
             ref={inputRef}
             type="text"
             className="chat-input"
-            placeholder={isRunning ? "Agente está processando..." : "Digite seu comando aqui..."}
+            placeholder={isRunning ? "Agent is processing..." : "Type your command here..."}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}

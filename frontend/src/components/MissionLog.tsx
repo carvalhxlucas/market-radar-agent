@@ -55,7 +55,7 @@ function MissionLog({ logs, onLogUpdate, onDataUpdate, onMissionComplete, missio
       setStatus('running');
       onLogUpdate({
         type: 'system',
-        message: 'Conectado ao servidor',
+        message: 'Connected to server',
         timestamp: new Date().toLocaleTimeString(),
       });
     };
@@ -85,7 +85,7 @@ function MissionLog({ logs, onLogUpdate, onDataUpdate, onMissionComplete, missio
         setStatus('complete');
         onLogUpdate({
           type: 'complete',
-          message: 'Missão concluída com sucesso!',
+          message: 'Mission completed successfully!',
           summary: data.summary,
           totalIterations: data.total_iterations,
           timestamp: new Date().toLocaleTimeString(),
@@ -116,11 +116,11 @@ function MissionLog({ logs, onLogUpdate, onDataUpdate, onMissionComplete, missio
     ws.onerror = (error) => {
       console.error('WebSocket error:', error);
       setStatus('error');
-      onLogUpdate({
-        type: 'error',
-        message: 'Erro na conexão WebSocket',
-        timestamp: new Date().toLocaleTimeString(),
-      });
+        onLogUpdate({
+          type: 'error',
+          message: 'WebSocket connection error',
+          timestamp: new Date().toLocaleTimeString(),
+        });
     };
 
     ws.onclose = () => {
@@ -160,11 +160,11 @@ function MissionLog({ logs, onLogUpdate, onDataUpdate, onMissionComplete, missio
   return (
     <div className="card">
       <h2>
-        Log da Missão
+        Mission Log
         <span className={`status-badge status-${status}`}>
-          {status === 'running' ? 'Em Execução' : 
-           status === 'complete' ? 'Concluída' : 
-           status === 'error' ? 'Erro' : 'Aguardando'}
+          {status === 'running' ? 'Running' : 
+           status === 'complete' ? 'Complete' : 
+           status === 'error' ? 'Error' : 'Waiting'}
         </span>
       </h2>
       
@@ -182,8 +182,8 @@ function MissionLog({ logs, onLogUpdate, onDataUpdate, onMissionComplete, missio
       >
         {          logs.length === 0 ? (
           <div style={{ color: '#666', textAlign: 'center', padding: '40px' }}>
-            <p>Nenhum log ainda.</p>
-            <p style={{ fontSize: '0.85rem', marginTop: '8px' }}>Inicie uma missão para ver os logs.</p>
+            <p>No logs yet.</p>
+            <p style={{ fontSize: '0.85rem', marginTop: '8px' }}>Start a mission to see logs.</p>
           </div>
         ) : (
           logs.map((log, index) => (
@@ -212,20 +212,20 @@ function MissionLog({ logs, onLogUpdate, onDataUpdate, onMissionComplete, missio
               )}
               
               {log.thought && (
-                <div style={{ marginTop: '8px', color: '#555' }}>
-                  <strong>Pensamento:</strong> {log.thought}
+                <div style={{ marginTop: '8px', color: '#b0b0b0' }}>
+                  <strong>Thought:</strong> {log.thought}
                 </div>
               )}
               
               {log.reasoning && (
-                <div style={{ marginTop: '4px', color: '#555' }}>
-                  <strong>Raciocínio:</strong> {log.reasoning}
+                <div style={{ marginTop: '4px', color: '#b0b0b0' }}>
+                  <strong>Reasoning:</strong> {log.reasoning}
                 </div>
               )}
               
               {log.action && (
-                <div style={{ marginTop: '8px', padding: '8px', background: '#f0f0f0', borderRadius: '4px' }}>
-                  <strong>Ação:</strong> {log.action.name}
+                <div style={{ marginTop: '8px', padding: '8px', background: '#2a2a2a', borderRadius: '4px', border: '1px solid #333' }}>
+                  <strong>Action:</strong> {log.action.name}
                   {log.action.params && (
                     <pre style={{ marginTop: '4px', fontSize: '0.85rem', overflow: 'auto' }}>
                       {JSON.stringify(log.action.params, null, 2)}
@@ -242,13 +242,13 @@ function MissionLog({ logs, onLogUpdate, onDataUpdate, onMissionComplete, missio
               
               {log.iteration && (
                 <div style={{ marginTop: '4px', color: '#666', fontSize: '0.85rem' }}>
-                  Iteração #{log.iteration} | Dados extraídos: {log.extractedCount || 0}
+                  Iteration #{log.iteration} | Extracted data: {log.extractedCount || 0}
                 </div>
               )}
               
               {log.summary && (
-                <div style={{ marginTop: '8px', padding: '8px', background: '#e3f2fd', borderRadius: '4px' }}>
-                  <strong>Resumo:</strong>
+                <div style={{ marginTop: '8px', padding: '8px', background: '#2a2a2a', borderRadius: '4px', border: '1px solid #333' }}>
+                  <strong>Summary:</strong>
                   <pre style={{ marginTop: '4px', whiteSpace: 'pre-wrap', fontSize: '0.85rem' }}>
                     {log.summary}
                   </pre>

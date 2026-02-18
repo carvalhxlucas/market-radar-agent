@@ -82,7 +82,7 @@ function App() {
       setMissionData(data);
     } catch (error) {
       console.error('Error starting mission:', error);
-      alert('Erro ao iniciar missão. Verifique se o servidor está rodando.');
+      alert('Error starting mission. Please check if the server is running.');
       setIsRunning(false);
     }
   };
@@ -101,16 +101,16 @@ function App() {
 
   const handleExportPDF = async () => {
     if (extractedData.length === 0) {
-      alert('Não há dados para exportar.');
+      alert('No data to export.');
       return;
     }
 
     const summary = logs
       .find(log => log.summary)?.summary || 
-      `Total de ${extractedData.length} registros extraídos`;
+      `Total of ${extractedData.length} extracted records`;
 
     await exportToPDF({
-      goal: currentGoal || 'Missão MarketRadar',
+      goal: currentGoal || 'MarketRadar Mission',
       data: extractedData,
       sources: sources,
       summary: summary
@@ -122,13 +122,13 @@ function App() {
       <header className="App-header">
         <div>
           <h1>MarketRadar</h1>
-          <p>Agente Autônomo de Pesquisa de Mercado</p>
+          <p>Autonomous Market Research Agent</p>
         </div>
         <nav className="header-nav">
-          <button className="nav-button">Histórico</button>
+          <button className="nav-button">History</button>
           {isRunning && (
             <div className="status-indicator">
-              <span>Em Execução</span>
+              <span>Running</span>
             </div>
           )}
           {extractedData.length > 0 && (
@@ -137,7 +137,7 @@ function App() {
               onClick={handleExportPDF}
               style={{ minWidth: '150px' }}
             >
-              Exportar PDF
+              Export PDF
             </button>
           )}
         </nav>
@@ -176,8 +176,8 @@ function App() {
               
               {isRunning && extractedData.length === 0 && (
                 <div className="card" style={{ textAlign: 'center', padding: '40px' }}>
-                  <h2 style={{ color: '#e0e0e0', marginBottom: '10px' }}>Processando...</h2>
-                  <p style={{ color: '#b0b0b0' }}>O agente está coletando dados para você</p>
+                  <h2 style={{ color: '#e0e0e0', marginBottom: '10px' }}>Processing...</h2>
+                  <p style={{ color: '#b0b0b0' }}>The agent is collecting data for you</p>
                 </div>
               )}
             </div>

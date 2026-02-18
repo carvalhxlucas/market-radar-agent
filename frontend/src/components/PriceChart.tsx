@@ -38,7 +38,7 @@ function PriceChart({ data }: PriceChartProps) {
         item.prices.forEach((price) => {
           const value = typeof price === 'object' ? price.value : price;
           const timestamp = item.timestamp || new Date().toISOString();
-          const source = item.title || item.url || `Fonte ${index + 1}`;
+          const source = item.title || item.url || `Source ${index + 1}`;
           
           allPrices.push({
             value,
@@ -72,7 +72,7 @@ function PriceChart({ data }: PriceChartProps) {
   return (
     <div className="card">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-        <h2>Histórico de Preços</h2>
+        <h2>Price History</h2>
         {averagePrice && (
           <div style={{
             padding: '8px 16px',
@@ -83,7 +83,7 @@ function PriceChart({ data }: PriceChartProps) {
             fontWeight: '500',
             border: '1px solid #444'
           }}>
-            Média: R$ {averagePrice.toFixed(2).replace('.', ',')}
+            Average: R$ {averagePrice.toFixed(2).replace('.', ',')}
           </div>
         )}
       </div>
@@ -107,7 +107,7 @@ function PriceChart({ data }: PriceChartProps) {
             tickFormatter={(value) => `R$ ${value.toFixed(2)}`}
           />
           <Tooltip
-            formatter={(value: number) => [`R$ ${value.toFixed(2).replace('.', ',')}`, 'Preço']}
+            formatter={(value: number) => [`R$ ${value.toFixed(2).replace('.', ',')}`, 'Price']}
             labelStyle={{ color: '#e0e0e0' }}
             contentStyle={{
               background: '#252525',
@@ -127,13 +127,13 @@ function PriceChart({ data }: PriceChartProps) {
             strokeWidth={2}
             dot={{ fill: '#888', r: 4, strokeWidth: 1, stroke: '#666' }}
             activeDot={{ r: 6, fill: '#999' }}
-            name="Preço (R$)"
+            name="Price (R$)"
           />
         </LineChart>
       </ResponsiveContainer>
       
       <div style={{ marginTop: '16px', fontSize: '0.85rem', color: '#b0b0b0' }}>
-        Total de pontos de dados: {chartData.length}
+        Total data points: {chartData.length}
       </div>
     </div>
   );

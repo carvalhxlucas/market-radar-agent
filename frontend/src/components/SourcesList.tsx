@@ -15,9 +15,9 @@ function SourcesList({ sources }: SourcesListProps) {
   if (sources.length === 0) {
     return (
       <div className="card">
-        <h2>Fontes Consultadas</h2>
+        <h2>Consulted Sources</h2>
         <div style={{ color: '#666', textAlign: 'center', padding: '40px' }}>
-          <p>Nenhuma fonte consultada ainda.</p>
+          <p>No sources consulted yet.</p>
         </div>
       </div>
     );
@@ -29,7 +29,7 @@ function SourcesList({ sources }: SourcesListProps) {
 
   return (
     <div className="card">
-      <h2>Fontes Consultadas ({uniqueSources.length})</h2>
+      <h2>Consulted Sources ({uniqueSources.length})</h2>
       
       <div>
         {uniqueSources.map((source, index) => (
@@ -81,7 +81,7 @@ function SourcesList({ sources }: SourcesListProps) {
                 </a>
                 {source.prices && (
                   <div style={{ marginTop: '8px', fontSize: '0.85rem', color: '#666' }}>
-                    {source.prices} preço(s) encontrado(s)
+                    {source.prices} price(s) found
                   </div>
                 )}
                 {source.timestamp && (

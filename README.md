@@ -1,25 +1,25 @@
-# MarketRadar - Agente Autônomo de Navegação Web
+# MarketRadar - Autonomous Web Navigation Agent
 
-MarketRadar é um agente autônomo especializado em Open Source Intelligence (OSINT) e pesquisa de mercado. Ele navega pela web de forma autônoma para cumprir objetivos específicos, superando obstáculos de UI, pop-ups e paginação.
+MarketRadar is an autonomous agent specialized in Open Source Intelligence (OSINT) and market research. It navigates the web autonomously to fulfill specific objectives, overcoming UI obstacles, pop-ups, and pagination.
 
-## Características
+## Features
 
-- Navegação autônoma na web usando Playwright
-- Detecção e prevenção de loops
-- Extração automática de dados (preços, produtos, etc.)
-- Sistema de memória para rastreamento de ações
-- Respostas em formato JSON estruturado
-- Navegação human-like (usa barras de busca e menus)
+- Autonomous web navigation using Playwright
+- Loop detection and prevention
+- Automatic data extraction (prices, products, etc.)
+- Memory system for action tracking
+- Structured JSON responses
+- Human-like navigation (uses search bars and menus)
 
-## Instalação Rápida
+## Quick Installation
 
-1. Clone o repositório:
+1. Clone the repository:
 ```bash
 git clone <repository-url>
 cd market-radar-agent
 ```
 
-2. Instale as dependências do backend:
+2. Install backend dependencies:
 ```bash
 cd backend
 pip install -r requirements.txt
@@ -27,38 +27,31 @@ playwright install chromium
 cd ..
 ```
 
-3. Instale as dependências do frontend:
+3. Install frontend dependencies:
 ```bash
 cd frontend
 npm install
 cd ..
 ```
 
-> 📖 **Para instruções detalhadas de execução, consulte [INSTRUCOES_EXECUCAO.md](./INSTRUCOES_EXECUCAO.md)**
+> 📖 **For detailed execution instructions, see [EXECUTION_INSTRUCTIONS.md](./EXECUTION_INSTRUCTIONS.md)**
 
-## Uso
+## Usage
 
-### Modo CLI (Linha de Comando)
+### CLI Mode (Command Line)
 
-Execute o agente com um objetivo específico:
-
-```bash
-cd backend
-python main.py "Encontre o preço médio de Creatina no Brasil"
-```
-
-Ou em inglês:
+Execute the agent with a specific objective:
 
 ```bash
 cd backend
 python main.py "Find the average price of Creatine in Brazil"
 ```
 
-### Modo Web (Frontend)
+### Web Mode (Frontend)
 
-#### Instalação Inicial
+#### Initial Installation
 
-1. **Instale as dependências do backend:**
+1. **Install backend dependencies:**
 ```bash
 cd backend
 pip install -r requirements.txt
@@ -66,81 +59,81 @@ playwright install chromium
 cd ..
 ```
 
-2. **Instale as dependências do frontend:**
+2. **Install frontend dependencies:**
 ```bash
 cd frontend
 npm install
 cd ..
 ```
 
-#### Execução
+#### Execution
 
-**Terminal 1 - Inicie a API backend:**
+**Terminal 1 - Start the backend API:**
 ```bash
 cd backend
 python api.py
 ```
 
-Ou usando uvicorn:
+Or using uvicorn:
 ```bash
 cd backend
 uvicorn api:app --reload --host 0.0.0.0 --port 8000
 ```
 
-**Terminal 2 - Inicie o frontend:**
+**Terminal 2 - Start the frontend:**
 ```bash
 cd frontend
 npm start
 ```
 
-3. **Acesse `http://localhost:3000` no navegador**
+3. **Access `http://localhost:3000` in your browser**
 
-#### Funcionalidades da Interface Web
+#### Web Interface Features
 
-- **💬 Chat Interativo**: Digite comandos diretamente no chat para o agente
-- **📚 Lista de Fontes**: Visualize automaticamente todas as URLs consultadas
-- **📊 Gráficos de Preços**: Veja o histórico de preços em tempo real
-- **📄 Exportação PDF**: Gere relatórios completos em PDF
-- **📡 Logs em Tempo Real**: Acompanhe o progresso via WebSocket
-- **⚙️ Configurações**: Ajuste opções como modo headless e máximo de iterações
+- **💬 Interactive Chat**: Type commands directly in the chat for the agent
+- **📚 Source List**: Automatically view all consulted URLs
+- **📊 Price Charts**: See price history in real-time
+- **📄 PDF Export**: Generate complete reports in PDF
+- **📡 Real-time Logs**: Track progress via WebSocket
+- **⚙️ Settings**: Adjust options like headless mode and max iterations
 
-#### Exemplo de Uso
+#### Usage Example
 
-1. Abra `http://localhost:3000`
-2. No chat, digite: "Encontre o preço médio de Creatina no Brasil"
-3. Pressione Enter ou clique em "Enviar"
-4. Acompanhe o agente navegando e coletando dados
-5. Veja os gráficos sendo atualizados em tempo real
-6. Exporte o relatório completo em PDF quando terminar
+1. Open `http://localhost:3000`
+2. In the chat, type: "Find the average price of Creatine in Brazil"
+3. Press Enter or click "Send"
+4. Watch the agent navigate and collect data
+5. See charts being updated in real-time
+6. Export the complete report in PDF when finished
 
-## Estrutura do Projeto
+## Project Structure
 
 ### Backend
-- `backend/`: Código Python do backend
-  - `main.py`: Arquivo principal de execução CLI
-  - `api.py`: API FastAPI com WebSocket para frontend
-  - `agent.py`: Lógica do agente MarketRadar com tomada de decisão
-  - `browser_engine.py`: Engine de navegação web usando Playwright
-  - `memory.py`: Sistema de memória e histórico de ações
-  - `extractor.py`: Sistema de extração de dados da web
-  - `requirements.txt`: Dependências Python
+- `backend/`: Python backend code
+  - `main.py`: Main CLI execution file
+  - `api.py`: FastAPI with WebSocket for frontend
+  - `agent.py`: MarketRadar agent logic with decision making
+  - `browser_engine.py`: Web navigation engine using Playwright
+  - `memory.py`: Memory and action history system
+  - `extractor.py`: Web data extraction system
+  - `requirements.txt`: Python dependencies
 
 ### Frontend
-- `frontend/`: Aplicação React com TypeScript
-  - `src/App.tsx`: Componente principal
-  - `src/components/MissionControl.tsx`: Controle de missões
-  - `src/components/MissionLog.tsx`: Log em tempo real
-  - `src/components/DataViewer.tsx`: Visualizador de dados extraídos
-  - `tsconfig.json`: Configuração TypeScript
+- `frontend/`: React application with TypeScript
+  - `src/App.tsx`: Main component
+  - `src/components/MissionControl.tsx`: Mission control
+  - `src/components/MissionLog.tsx`: Real-time log
+  - `src/components/DataViewer.tsx`: Extracted data viewer
+  - `tsconfig.json`: TypeScript configuration
 
-## Formato de Resposta
+## Response Format
 
-O agente retorna comandos em formato JSON:
+The agent returns commands in JSON format:
 
 ```json
 {
-  "thought_process": "Análise do estado atual",
-  "reasoning": "Explicação da ação escolhida",
+  "thought_process": "Current state analysis",
+  "reasoning": "Explanation of chosen action",
   "action": {
     "name": "type|click|goto|scroll|wait|extract|finish",
     "params": {
@@ -152,27 +145,29 @@ O agente retorna comandos em formato JSON:
 }
 ```
 
-## Ações Disponíveis
+## Available Actions
 
-- `goto(url)`: Navegar para uma URL
-- `click(selector)`: Clicar em um elemento
-- `type(selector, text)`: Digitar em um campo
-- `scroll(direction)`: Rolar a página (down/up)
-- `wait(seconds)`: Aguardar um tempo
-- `extract(data_points)`: Extrair dados da página
-- `finish(summary)`: Finalizar a missão
+- `goto(url)`: Navigate to a URL
+- `click(selector)`: Click on an element
+- `type(selector, text)`: Type into a field
+- `scroll(direction)`: Scroll the page (down/up)
+- `wait(seconds)`: Wait for a period
+- `extract(data_points)`: Extract data from the page
+- `finish(summary)`: Finish the mission
 
-## Variáveis de Ambiente
+## Environment Variables
 
-Crie um arquivo `.env` (opcional):
+Create a `.env` file (optional):
 
 ```
 BROWSER_HEADLESS=true
 MAX_ITERATIONS=50
 ```
 
-## Requisitos
+## Requirements
 
 - Python 3.8+
 - Playwright
-- Navegador Chromium (instalado via Playwright)
+- Chromium browser (installed via Playwright)
+- Node.js 16+
+- npm or yarn

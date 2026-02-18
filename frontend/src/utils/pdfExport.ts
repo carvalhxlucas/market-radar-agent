@@ -24,13 +24,13 @@ export async function exportToPDF(exportData: ExportData): Promise<void> {
   let yPosition = 20;
 
   doc.setFontSize(18);
-  doc.setTextColor(102, 126, 234);
-  doc.text('MarketRadar - Relatório de Pesquisa', pageWidth / 2, yPosition, { align: 'center' });
+  doc.setTextColor(200, 200, 200);
+  doc.text('MarketRadar - Research Report', pageWidth / 2, yPosition, { align: 'center' });
   yPosition += 15;
 
   doc.setFontSize(12);
-  doc.setTextColor(0, 0, 0);
-  doc.text(`Objetivo: ${exportData.goal}`, 20, yPosition);
+  doc.setTextColor(180, 180, 180);
+  doc.text(`Goal: ${exportData.goal}`, 20, yPosition);
   yPosition += 10;
 
   if (exportData.summary) {
@@ -42,8 +42,8 @@ export async function exportToPDF(exportData: ExportData): Promise<void> {
 
   if (exportData.data.length > 0) {
     doc.setFontSize(14);
-    doc.setTextColor(102, 126, 234);
-    doc.text('Dados Extraídos', 20, yPosition);
+    doc.setTextColor(200, 200, 200);
+    doc.text('Extracted Data', 20, yPosition);
     yPosition += 10;
 
     exportData.data.forEach((item, index) => {
@@ -53,27 +53,27 @@ export async function exportToPDF(exportData: ExportData): Promise<void> {
       }
 
       doc.setFontSize(12);
-      doc.setTextColor(0, 0, 0);
-      doc.text(`Registro ${index + 1}`, 20, yPosition);
+      doc.setTextColor(200, 200, 200);
+      doc.text(`Record ${index + 1}`, 20, yPosition);
       yPosition += 8;
 
       if (item.title) {
         doc.setFontSize(10);
-        doc.text(`Título: ${item.title}`, 25, yPosition);
+        doc.text(`Title: ${item.title}`, 25, yPosition);
         yPosition += 6;
       }
 
       if (item.url) {
         doc.setFontSize(9);
-        doc.setTextColor(33, 150, 243);
+        doc.setTextColor(150, 150, 150);
         doc.text(`URL: ${item.url}`, 25, yPosition);
         yPosition += 6;
-        doc.setTextColor(0, 0, 0);
+        doc.setTextColor(200, 200, 200);
       }
 
       if (item.prices && item.prices.length > 0) {
         doc.setFontSize(10);
-        doc.text(`Preços encontrados (${item.prices.length}):`, 25, yPosition);
+        doc.text(`Prices found (${item.prices.length}):`, 25, yPosition);
         yPosition += 6;
         
         item.prices.forEach((price) => {
@@ -87,10 +87,10 @@ export async function exportToPDF(exportData: ExportData): Promise<void> {
 
       if (item.average_price) {
         doc.setFontSize(10);
-        doc.setTextColor(76, 175, 80);
-        doc.text(`Média: R$ ${item.average_price.toFixed(2)}`, 25, yPosition);
+        doc.setTextColor(180, 180, 180);
+        doc.text(`Average: R$ ${item.average_price.toFixed(2)}`, 25, yPosition);
         yPosition += 8;
-        doc.setTextColor(0, 0, 0);
+        doc.setTextColor(200, 200, 200);
       }
 
       yPosition += 5;
@@ -104,8 +104,8 @@ export async function exportToPDF(exportData: ExportData): Promise<void> {
     }
 
     doc.setFontSize(14);
-    doc.setTextColor(102, 126, 234);
-    doc.text('Fontes Consultadas', 20, yPosition);
+    doc.setTextColor(200, 200, 200);
+    doc.text('Consulted Sources', 20, yPosition);
     yPosition += 10;
 
     exportData.sources.forEach((source) => {
@@ -115,18 +115,18 @@ export async function exportToPDF(exportData: ExportData): Promise<void> {
       }
 
       doc.setFontSize(10);
-      doc.setTextColor(0, 0, 0);
+      doc.setTextColor(200, 200, 200);
       if (source.title) {
         doc.text(source.title, 25, yPosition);
         yPosition += 6;
       }
       doc.setFontSize(9);
-      doc.setTextColor(33, 150, 243);
+      doc.setTextColor(150, 150, 150);
       const urlLines = doc.splitTextToSize(source.url, pageWidth - 50);
       doc.text(urlLines, 25, yPosition);
       yPosition += urlLines.length * 5 + 5;
     });
   }
 
-  doc.save(`marketradar-relatorio-${new Date().toISOString().split('T')[0]}.pdf`);
+  doc.save(`marketradar-report-${new Date().toISOString().split('T')[0]}.pdf`);
 }
